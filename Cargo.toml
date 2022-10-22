@@ -1,0 +1,27 @@
+[package]
+name = "witter-backend"
+version = "0.1.0"
+edition = "2021"
+
+[profile.release]
+opt-level = 'z'     # Optimize for size.
+lto = true          # Enable Link Time Optimization
+codegen-units = 1   # Reduce number of codegen units to increase optimizations.
+panic = 'abort'     # Abort on panic
+strip = true  
+
+[dependencies]
+async-std ={ version = "1.12.0", features =["attributes","unstable"]}
+chrono = "0.4.22"
+dotenv = "0.15.0"
+log = "0.4.17"
+pretty_env_logger = "0.4.0"
+serde = {version = "1.0.145", features = ["derive"]}
+serde_json = "1.0.85"
+sqlx ={ version = "0.6.2", features =["runtime-async-std-native-tls", "macros", "chrono","json","postgres","uuid"]}
+tide = "0.16.0"
+uuid = {version="1.1.2", features =["v4","serde"]}
+tera = "1.17.1"
+tide-tera = "0.2.2"
+oauth2 = { version = "4.0.0-alpha.3", features = ["reqwest"], default-features = false  }
+

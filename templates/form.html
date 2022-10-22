@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<form autocomplete="off">
+  <input id="id" name="id" type="hidden" value="{% if fruit %} {{- fruit.id -}} {% endif %}">
+  <div class="row">
+    <div class="ten columns">
+      <label for="name">Name</label>
+      <input class="u-full-width" id="name" name="name" type="text" placeholder="T-Rex" value="{% if fruit %} {{- fruit.name -}} {% endif %}">
+    </div>
+  </div>
+  <div class="row">
+    <div class="ten columns">
+      <label for="weight">Weight</label>
+      <input class="u-full-width" name="weight" id="weight" type="number" placeholder="" value="{% if fruit %} {{- fruit.weight -}} {% endif %}">
+    </div>
+  </div>
+  <div class="row">
+    <div class="ten columns">
+      <label for="diet">Diet</label>
+      <input class="u-full-width" name="color" id="color" type="text" placeholder="" value="{% if fruit %} {{- fruit.color -}} {% endif %}">
+    </div>
+  </div>
+
+  <input class="button-primary submit" type="submit" value="Submit"> <a class="button" href="/">Cancel</a>
+</form>
+{% endblock %}
+
+
+{% block aditionalScripts %}
+    <script>
+        const submitButton = document.querySelector('.submit');
+
+        submitButton.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(document.querySelector('form'));
+            const data = Object.fromEntries(formData);
+            const method = data.id ? 'PUT' : 'POST';
+            api( method, data )
+            .then( res => {
+                // just reload home
+                window.location.href = '/';
+            })
+            .catch( alert );
+        });
+    </script>
+{% endblock aditionalScripts %}

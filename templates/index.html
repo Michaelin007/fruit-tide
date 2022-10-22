@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+ {{title}}
+{% endblock title %}
+
+{% block content %}
+
+{% if fruits %}
+    <table class="u-full-width">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Weight</th>
+                <th>Color</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for fruit in fruits%}
+            <tr>
+                <td>{{fruit.id}}</td>
+                <td>{{fruit.name}}</td>
+                <td>{{fruit.weight}}</td>
+                <td>{{fruit.color}}</td>
+                <td><a href="/fruits/{{fruit.id}}/edit"> Edit </a></td>
+                <td><a href="/fruits/{{fruit.id}}/delete"> Delete </a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+<a href="/fruits/new">Create new Fruit</a>
+
+{% endblock content %}
