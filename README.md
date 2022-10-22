@@ -1,1 +1,2 @@
 # fruit-tide
+This is a CRUD application implemented in rust with tide framework. This application create rest api for us to store data on a particular fruit. Tera template engine was used to integrate the backend with the front-end. To provide security, Oauth was used to allow anyone login and create their own fruit catalogue. This project was influenced by (Javier Viola Series on Tide)[https://javierviola.com/post/07-basic-crud-with-rust-using-tide-adding-oauth/] 
